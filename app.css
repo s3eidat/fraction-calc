@@ -1,0 +1,33 @@
+.fc-tabs { display: flex; width: fit-content; max-width: 100%; }
+.fc-in { font-family: var(--mono); font-size: 17px; min-height: 48px; }
+.fc-keys { gap: 6px; }
+.fc-keys .btn { min-width: 38px; font-size: 15px; }
+.fc-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 14px; align-items: start; }
+@media (max-width: 860px) { .fc-grid { grid-template-columns: minmax(0, 1fr); } }
+
+.fc-main { display: grid; gap: 14px; }
+.fc-big { font-size: 34px; font-weight: 650; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; color: var(--accent); overflow-x: auto; }
+.fc-chain { font-size: 26px; }
+.fc-err { color: var(--danger); background: var(--danger-soft); padding: 12px 14px; border-radius: 10px; }
+.fc-forms { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 6px 16px; margin: 0; font-size: 14px; }
+.fc-forms dt { color: var(--text-3); }
+.fc-forms dd { margin: 0; overflow-wrap: anywhere; }
+.fc-approx { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+
+/* stacked fractions */
+.fc-f { display: inline-flex; align-items: center; gap: .18em; vertical-align: middle; }
+.fc-fr { display: inline-grid; justify-items: center; line-height: 1.15; font-variant-numeric: tabular-nums; }
+.fc-n { padding: 0 .2em; border-bottom: .07em solid currentColor; overflow-wrap: anywhere; }
+.fc-d { padding: 0 .2em; overflow-wrap: anywhere; }
+.fc-fr .fc-n, .fc-fr .fc-d { font-size: .82em; }
+.fc-int { font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.fc-sign { margin-right: .05em; }
+.fc-op { color: var(--text-3); padding: 0 .1em; }
+.fc-big .fc-op { color: var(--text-3); }
+
+.fc-steps { margin: 0; padding-left: 22px; display: grid; gap: 14px; counter-reset: s; }
+.fc-steps li { display: grid; gap: 6px; color: var(--text-2); font-size: 13.5px; }
+.fc-steps li::marker { color: var(--text-3); }
+.fc-line { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 19px; color: var(--text); }
+.fc-note { font-size: 12.5px; color: var(--text-3); }
+.fc-line sup { font-size: .6em; align-self: flex-start; }

@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; media-src 'self' data: blob:; connect-src 'self' data: blob:; worker-src 'self' blob:; manifest-src 'self'; form-action 'none'; base-uri 'none'; object-src 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Fraction Calc — Free Fraction Calculator with Steps | S3eidat Tools</title>
+<meta name="description" content="Add, subtract, multiply and divide fractions and mixed numbers exactly, with working steps. Convert decimals (including repeating decimals like 0.(3)) to fractions, fractions to decimals and percents, and compare fractions. Free and private.">
+<meta property="og:title" content="Fraction Calc — exact fractions with working steps">
+<meta property="og:description" content="Fractions, mixed numbers, repeating decimals and percents. Runs 100% in your browser.">
+<link rel="icon" href="kit/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="kit/kit.css">
+<link rel="stylesheet" href="app.css">
+<script src="kit/kit.js"></script>
+<!--s3:seo-->
+<link rel="canonical" href="https://s3eidat.github.io/fraction-calc/">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#0d0f12">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="S3eidat Tools">
+<meta property="og:url" content="https://s3eidat.github.io/fraction-calc/">
+<meta property="og:image" content="https://s3eidat.github.io/fraction-calc/screenshot.png">
+<meta property="og:image:width" content="1280"><meta property="og:image:height" content="800">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Fraction Calc — Fractions, mixed numbers and decimals">
+<meta name="twitter:description" content="Fractions, mixed numbers and decimals. Free, private and runs 100% in your browser: no sign-up, no uploads.">
+<meta name="twitter:image" content="https://s3eidat.github.io/fraction-calc/screenshot.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Fraction Calc", "url": "https://s3eidat.github.io/fraction-calc/", "description": "Fractions, mixed numbers and decimals. Free, private and runs 100% in your browser: no sign-up, no uploads.", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any (web browser)", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "image": "https://s3eidat.github.io/fraction-calc/screenshot.png", "author": {"@type": "Person", "name": "s3eidat", "url": "https://github.com/s3eidat"}}</script>
+<!--/s3:seo-->
+</head>
+<body data-tool="fraction-calc">
+<main class="s3-main">
+  <section class="s3-hero">
+    <h1>Fraction Calc</h1>
+    <p>Exact fraction arithmetic with every step shown. Mixed numbers, repeating decimals and huge numbers are handled without rounding.</p>
+  </section>
+
+  <div class="seg fc-tabs" id="tabs" role="tablist" aria-label="Mode">
+    <button type="button" data-v="calc" aria-pressed="true">Calculate</button>
+    <button type="button" data-v="d2f" aria-pressed="false">Decimal → fraction</button>
+    <button type="button" data-v="f2d" aria-pressed="false">Fraction → decimal</button>
+    <button type="button" data-v="cmp" aria-pressed="false">Compare</button>
+  </div>
+
+  <section class="card stack mt fc-panel" data-panel="calc">
+    <label class="field" for="calcIn">Expression</label>
+    <input class="input fc-in" id="calcIn" dir="ltr" autocomplete="off" spellcheck="false" placeholder="1 1/2 + 3/4 × 2/5">
+    <div class="row fc-keys" id="calcKeys">
+      <button class="btn small" type="button" data-ins=" + ">+</button>
+      <button class="btn small" type="button" data-ins=" − ">−</button>
+      <button class="btn small" type="button" data-ins=" × ">×</button>
+      <button class="btn small" type="button" data-ins=" ÷ ">÷</button>
+      <button class="btn small" type="button" data-ins="(">(</button>
+      <button class="btn small" type="button" data-ins=")">)</button>
+      <button class="btn small" type="button" data-ins="^">^</button>
+      <span class="faint">Mixed number: <code>2 3/4</code> · repeating decimal: <code>0.(3)</code></span>
+    </div>
+  </section>
+
+  <section class="card stack mt fc-panel" data-panel="d2f" hidden>
+    <label class="field" for="decIn"><span>Decimal <span class="faint">(put the repeating part in brackets: 0.(3), 1.2(34))</span></span></label>
+    <input class="input fc-in" id="decIn" dir="ltr" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="0.1(6)">
+  </section>
+
+  <section class="card stack mt fc-panel" data-panel="f2d" hidden>
+    <label class="field" for="fracIn">Fraction or mixed number</label>
+    <input class="input fc-in" id="fracIn" dir="ltr" autocomplete="off" spellcheck="false" placeholder="5/7">
+  </section>
+
+  <section class="card stack mt fc-panel" data-panel="cmp" hidden>
+    <label class="field" for="cmpIn"><span>Fractions to compare <span class="faint">(separate with commas)</span></span></label>
+    <input class="input fc-in" id="cmpIn" dir="ltr" autocomplete="off" spellcheck="false" placeholder="2/3, 3/5, 7/10">
+  </section>
+
+  <div class="fc-grid mt">
+    <section class="card">
+      <div class="row between">
+        <h2>Result</h2>
+        <button class="btn ghost small" type="button" id="copy"><svg class="i"><use href="#i-copy"/></svg>Copy</button>
+      </div>
+      <div id="result" class="fc-result" aria-live="polite"></div>
+    </section>
+    <section class="card">
+      <h2>Working</h2>
+      <ol id="steps" class="fc-steps"></ol>
+    </section>
+  </div>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
